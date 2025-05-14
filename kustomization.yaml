@@ -1,0 +1,7 @@
+resources:
+  - namespace.yaml
+  - mongo-pvc.yaml
+  - mongodb-deployment.yaml
+  - app-deployment.yaml
+  - services.yaml
+  - uploads-pvc.yaml

@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wandercult
+  namespace: wandercult
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wandercult
+  template:
+    metadata:
+      labels:
+        app: wandercult
+    spec:
+      containers:
+        - name: wandercult
+          image: noredineba/wandercult:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URI
+              value: mongodb://mongodb:27017/auth_Wandercult
+          volumeMounts:
+            - mountPath: /app/uploads
+              name: uploads
+      volumes:
+        - name: uploads
+          persistentVolumeClaim:
+            claimName: uploads-pvc
+
