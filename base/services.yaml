@@ -18,6 +18,7 @@ metadata:
   namespace: wandercult
 spec:
   type: NodePort
+  sessionAffinity: ClientIP
   ports:
     - port: 3000
       targetPort: 3000
