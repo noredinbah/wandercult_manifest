@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: wandercult
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/noredinbah/wandercult_manifest.git'
+    targetRevision: HEAD
+    path: base
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: wandercult
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

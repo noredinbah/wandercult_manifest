@@ -16,12 +16,14 @@ kind: Service
 metadata:
   name: wandercult
   namespace: wandercult
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb" # use "nlb" for better performance
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing" # expose publicly
 spec:
-  type: NodePort
-  sessionAffinity: ClientIP
-  ports:
-    - port: 3000
-      targetPort: 3000
-      nodePort: 30080
+  type: LoadBalancer
   selector:
     app: wandercult
+  ports:
+    - name: http
+      port: 80
+      targetPort: 4000

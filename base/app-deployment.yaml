@@ -17,15 +17,16 @@ spec:
         - name: wandercult
           image: noredineba/wandercult:latest
           ports:
-            - containerPort: 3000
-          env:
-            - name: MONGO_URI
-              value: mongodb://mongodb:27017/auth_Wandercult
+            - containerPort: 4000
+          envFrom:
+            - configMapRef:
+                name: wandercult-config
+            - secretRef:
+                name: wandercult-secrets
           volumeMounts:
-            - mountPath: /app/uploads
-              name: uploads
+            - name: uploads
+              mountPath: /app/uploads
       volumes:
         - name: uploads
           persistentVolumeClaim:
             claimName: uploads-pvc
-
