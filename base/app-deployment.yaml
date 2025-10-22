@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: wandercult
-          image: noredineba/wandercult:latest
+          image: noredineba/wandercult:build-23
           ports:
             - containerPort: 4000
           envFrom:
